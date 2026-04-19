@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: api
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_URL: sqlite:////data/eval.db
+    ports:
+      - "8003:8003"
+    volumes:
+      - eval_data:/data
+      - ./eval:/app/eval
+      - ./api:/app/api
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8003/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  runner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner
+    env_file: .env
+    environment:
+      EVAL_OUTPUT_DIR: /data/results
+    volumes:
+      - eval_data:/data
+      - ./eval:/app/eval
+      - ./hallucination:/app/hallucination
+      - ./redteaming:/app/redteaming
+    profiles:
+      - eval
+
+volumes:
+  eval_data:

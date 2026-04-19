@@ -1,0 +1,48 @@
+# LLM provider SDKs
+anthropic==0.28.0
+openai==1.30.1
+ollama==0.2.1
+
+# HuggingFace (local model evaluation via HuggingFaceAdapter)
+torch==2.3.0
+transformers==4.41.0
+datasets==2.19.1
+accelerate==0.30.0
+huggingface_hub==0.23.2
+
+# Evaluation metrics
+rouge-score==0.1.2          # ROUGE-L
+bert-score==0.3.13          # BERTScore (multilingual)
+evaluate==0.4.2             # HuggingFace evaluate (wraps many metrics)
+
+# LLM-as-judge / SelfCheckGPT consistency scoring
+numpy==1.26.4
+scipy==1.13.0
+
+# Config / task registry
+pyyaml==6.0.1
+
+# Web API (REST interface for triggering runs and querying results)
+fastapi==0.111.0
+uvicorn[standard]==0.29.0
+
+# Database
+sqlalchemy==2.0.30
+
+# HTTP client (adapters + scraping)
+requests==2.32.2
+httpx==0.27.0
+
+# Validation / serialization
+pydantic==2.7.1
+pydantic-settings==2.2.1
+
+# Utilities
+python-dotenv==1.0.1
+tenacity==8.3.0
+loguru==0.7.2
+tqdm==4.66.4
+
+# Testing
+pytest==8.2.0
+pytest-asyncio==0.23.6
